@@ -1,0 +1,10 @@
+#container {
+  width: 300px;
+  height: 300px; }
+  #container .content {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 0px 0px 1px #000 inset;
+    float: left; }
+
+/*# sourceMappingURL=style.css.map */

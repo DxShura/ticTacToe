@@ -1,0 +1,12 @@
+@import 'variables';
+
+#container{
+	width: $width;
+	height: $width;
+	.content{
+		width: $width / 3;
+		height: $height / 3;
+		box-shadow: 0px 0px 0px 1px #000 inset;
+		float: left;
+	}
+}
