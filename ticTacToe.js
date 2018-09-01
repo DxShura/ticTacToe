@@ -10,9 +10,19 @@ const createPlayers = () =>{
 	return{playerOne, playerTwo};
 };
 
+const replay = function(){
+	gameBoard.board = new Array(9);
+	gameBoard.turn = 0;
+	gameBoard.arrayIndex = 0;
+	document.getElementById('displayWin').textContent = "";
+	let index = 0;
+	for(let i of gameBoard.board){
+		document.getElementsByClassName('content')[index].textContent = "";
+		index++;
+	}
+}
 
-const buttonPlay = document.getElementById('buttonPlay');
-buttonPlay.addEventListener('click', createPlayers);
+
 
 const render = function(e){
 	let position = e.target.dataset.gridnum;
@@ -41,27 +51,37 @@ const checkWin = function(playerObj){
 		let colCheck = [gameBoard.board[j],gameBoard.board[j+3],gameBoard.board[j+6]];
 		let diagDownCheck = [gameBoard.board[i+0],gameBoard.board[i+4],gameBoard.board[i+8]];
 		let diagUpCheck = [gameBoard.board[i+2],gameBoard.board[i+4],gameBoard.board[i+6]];
-		console.log(i);
-		console.log(diagDownCheck);
 		if(rowCheck.every(x => x === playerObj.symbol)){
-			console.log(playerObj.name + " win");
+			displayWinner(playerObj.name);
 			playerObj.win = "yes";
 		} else if(colCheck.every(x => x === playerObj.symbol)){
-			console.log(playerObj.name + " win");
+			displayWinner(playerObj.name);
 			playerObj.win = "yes";
 		} else if(diagDownCheck.every(x => x === playerObj.symbol)){
-			console.log(playerObj.name + " win");
+			displayWinner(playerObj.name);
 			playerObj.win = "yes";
 		} else if(diagUpCheck.every(x => x === playerObj.symbol)){
-			console.log(playerObj.name + " win");
+			displayWinner(playerObj.name);
 			playerObj.win = "yes";
 		} else if((gameBoard.turn === 9) && (playerObj.win === 'no')){
-			console.log('tie');
+			displayWinner('tie');
 		}
 	}
 }
 
+const displayWinner = function(winner){
+	const buttonReplay = document.getElementById('buttonReplay');
+	buttonReplay.addEventListener('click', replay);
+	if(winner === 'tie'){
+		document.getElementById('displayWin').textContent = `It's a tie!`;
+	}else {
+		document.getElementById('displayWin').textContent = `${winner} wins!`;
+	}
+}
+
 const gameBoard = (() =>{
+	const buttonPlay = document.getElementById('buttonPlay');
+	buttonPlay.addEventListener('click', createPlayers);
 	let board = new Array(9);
 	let turn = 0;
 	let arrayIndex = 0;
