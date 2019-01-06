@@ -3,11 +3,11 @@ const player = (name, symbol) =>{
 	return{name, win, symbol}
 };
 
-
+let playerOne;
+let playerTwo;
 const createPlayers = () =>{
-	playerOne = player(document.getElementById('player-One').value, 'x');
-	playerTwo = player(document.getElementById('player-Two').value, 'o');
-	playerAi = player('AI', 'o');	
+	playerOne = player(document.querySelector('#player-One').value, '<i class="fas fa-times"></i>');
+	playerTwo = player(document.querySelector('#player-Two').value, '<i class="far fa-circle"></i>');
 };
 
 const replay = function(){
@@ -17,7 +17,7 @@ const replay = function(){
 	document.getElementById('displayWin').textContent = "";
 	let index = 0;
 	for(let i of gameBoard.board){
-		document.getElementsByClassName('content')[index].textContent = "";
+		document.getElementsByClassName('contentTicTacToe')[index].innerHTML = "";
 		index++;
 	}
 	createPlayers();
@@ -41,39 +41,9 @@ const render = function(e){
 	}
 	let index = 0;
 	for(let i of gameBoard.board){
-		document.getElementsByClassName('content')[index].textContent = i;
-		index++;
-	}
-}
-
-
-const renderAi = function(e){
-	let position = e.target.dataset.gridnum;
-	let input;
-	let inputAi = playerAi.symbol;
-	
-	if((gameBoard.turn % 2 === 0) && (gameBoard.board[position] === undefined) && (playerAi.win ==='no')){
-		input = playerOne.symbol;
-		gameBoard.turn++;
-		gameBoard.board[position] = input;
-		checkWin(playerOne);
-		if(gameBoard.turn === 1){
-			let firstPlayAi = Math.floor(Math.random() * 9);
-			if((firstPlayAi == position) && (firstPlayAi != 8)){
-				gameBoard.board[firstPlayAi+1] = inputAi;
-				gameBoard.turn++;
-			} else if((firstPlayAi == position) && (firstPlayAi === 8)){
-				gameBoard.board[firstPlayAi-1] = inputAi;
-				gameBoard.turn++;
-			} else{
-				gameBoard.board[firstPlayAi] = inputAi;
-				gameBoard.turn++;
-			}	
+		if(i !== undefined){
+			document.getElementsByClassName('contentTicTacToe')[index].innerHTML = i;
 		}
-	}
-	let index = 0;
-	for(let i of gameBoard.board){
-		document.getElementsByClassName('content')[index].textContent = i;
 		index++;
 	}
 }
@@ -103,34 +73,30 @@ const checkWin = function(playerObj){
 }
 
 const displayWinner = function(winner){
-	const buttonReplay = document.getElementById('buttonReplay');
-	buttonReplay.addEventListener('click', replay);
+	const displayWin = document.querySelector('#displayWin');
 	if(winner === 'tie'){
-		document.getElementById('displayWin').textContent = `It's a tie!`;
+		displayWin.textContent = `Match nul!`;
 	} else {
-		document.getElementById('displayWin').textContent = `${winner} wins!`;
+		displayWin.textContent = `${winner} gagne!`;
 	}
 }
 
 const gameBoard = (() =>{
-	const buttonPlay = document.getElementById('buttonPlay');
+	const buttonReplay = document.querySelector('#buttonReplay');
+	buttonReplay.addEventListener('click', replay);
+	const buttonPlay = document.querySelector('#buttonPlay');
 	buttonPlay.addEventListener('click', createPlayers);
-	const buttonPlayAi = document.getElementById('buttonPlayAi');
-	buttonPlayAi.addEventListener('click', createPlayers);
 	let board = new Array(9);
 	let turn = 0;
 	let arrayIndex = 0;
 	for(let i of board){
-		let gameboard = document.getElementById('container');
+		let gameboard = document.querySelector('#containerTicTacToe');
 		const content = document.createElement('div');
-		content.classList.add('content');
+		content.classList.add('contentTicTacToe');
 		content.dataset.gridnum = arrayIndex;
 		arrayIndex++;
 		buttonPlay.addEventListener('click', function(){
 			content.addEventListener('click', render);
-		});
-		buttonPlayAi.addEventListener('click', function(){
-			content.addEventListener('click', renderAi);
 		});
 		gameboard.appendChild(content);
 	}

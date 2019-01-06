@@ -1,0 +1,77 @@
+@function calculRem($size){
+    $remSize: $size/16px;
+    @return #{$remSize}rem;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import 'variables';
+
+* {
+    box-sizing: border-box;
+}
+body{
+	font-family: 'noto Sans', sans-serif;
+	background: $bg;
+	color: $text;
+}
+
+.wrapper{
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+	button{
+		background: $bg;
+		border: $text 1px solid;
+		border-radius: 5%;
+		color: $text;
+		margin-right: .5rem;
+		outline: none;
+		padding: .5rem;
+		transition: .2s;
+		&:hover{
+			background: #525151;
+			transition: .2s;
+		}
+	}
+	a{
+		color: $text;
+	}
+	.divInputTicTacToe{
+		margin-top: 2rem;
+		position: relative;
+		label{
+			position: absolute;
+			bottom: 2rem;
+			font-size: .8rem;
+		}
+		input{
+			outline: none;
+			padding-left: .5rem;
+			height: 2rem;
+			width: 39%;
+			border: none;
+			background: $bg;
+			color: $text;
+			border-bottom: 1px solid $text;
+		}
+	} 
+	.divButtonTicTactToe{
+		margin: 1rem 0;
+	}
+	#containerTicTacToe{
+		height: calculRem(300px);
+		.contentTicTacToe{
+			background: $bg;
+			width: calculRem(100px);
+			height: calculRem(100px);
+			outline: 1px solid $text;
+			float: left;
+			font-size: 3rem;
+			line-height: calculRem(100px);
+		}
+	}
+	#displayWin{
+		font-size: 2rem;
+		margin: .5rem 0;
+	}
+}

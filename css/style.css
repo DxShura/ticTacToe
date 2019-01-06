@@ -1,10 +1,85 @@
-#container {
-  width: 300px;
-  height: 300px; }
-  #container .content {
-    width: 100px;
-    height: 100px;
-    box-shadow: 0px 0px 0px 1px #000 inset;
-    float: left; }
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
+body {
+  font-family: 'noto Sans', sans-serif;
+  background: #808080;
+  color: #ffffff;
+}
+
+.wrapper {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.wrapper button {
+  background: #808080;
+  border: #ffffff 1px solid;
+  border-radius: 5%;
+  color: #ffffff;
+  margin-right: .5rem;
+  outline: none;
+  padding: .5rem;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.wrapper button:hover {
+  background: #525151;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.wrapper a {
+  color: #ffffff;
+}
+
+.wrapper .divInputTicTacToe {
+  margin-top: 2rem;
+  position: relative;
+}
+
+.wrapper .divInputTicTacToe label {
+  position: absolute;
+  bottom: 2rem;
+  font-size: .8rem;
+}
+
+.wrapper .divInputTicTacToe input {
+  outline: none;
+  padding-left: .5rem;
+  height: 2rem;
+  width: 39%;
+  border: none;
+  background: #808080;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.wrapper .divButtonTicTactToe {
+  margin: 1rem 0;
+}
+
+.wrapper #containerTicTacToe {
+  height: 18.75rem;
+}
+
+.wrapper #containerTicTacToe .contentTicTacToe {
+  background: #808080;
+  width: 6.25rem;
+  height: 6.25rem;
+  outline: 1px solid #ffffff;
+  float: left;
+  font-size: 3rem;
+  line-height: 6.25rem;
+}
+
+.wrapper #displayWin {
+  font-size: 2rem;
+  margin: .5rem 0;
+}
 /*# sourceMappingURL=style.css.map */
